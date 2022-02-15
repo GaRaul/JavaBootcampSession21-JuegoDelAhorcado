@@ -23,50 +23,25 @@ public class Ventana extends JFrame {
 
 	static Juego juego = new Juego();
 	public static Ventana frame;
+	
+	private JLabel[] vidas;
+	private JButton[] botones;
+	private JLabel lblPalabraJugador, lblPalabraResuelta, lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6, lblAhorcado;
 
-	private JLabel lblPalabraJugador;
-	private JLabel lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6, lblAhorcado;
 
-	private JButton btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnÑ, btnO,
+
+	private JButton btnResolver, btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnÑ, btnO,
 			btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;
 
-	private JButton[] botones = new JButton[27];
 	
-	//{btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN,
-		//btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ };
+
+	
+	// {btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL,
+	// btnM, btnN,
+	// btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ
+	// };
 
 	private char letra = ' ';
-	
-	public void rellenarBotones() {
-		botones[0] = btnA;
-		botones[1] = btnB;
-		botones[2] = btnC;
-		botones[3] = btnD;
-		botones[4] = btnE;
-		botones[5] = btnF;
-		botones[6] = btnG;
-		botones[7] = btnH;
-		botones[8] = btnI;
-		botones[9] = btnJ;
-		botones[10] = btnK;
-		botones[11] = btnL;
-		botones[12] = btnM;
-		botones[13] = btnN;
-		botones[14] = btnÑ;
-		botones[15] = btnO;
-		botones[16] = btnP;
-		botones[17] = btnQ;
-		botones[18] = btnR;
-		botones[19] = btnS;
-		botones[20] = btnT;
-		botones[21] = btnU;
-		botones[22] = btnV;
-		botones[23] = btnW;
-		botones[24] = btnX;
-		botones[25] = btnY;
-		botones[26] = btnZ;
-		
-	}
 
 //	public void activarDesactivarBotones(boolean onOf) {
 //		for (int i = 0; i < botones.length; i++) {
@@ -117,16 +92,15 @@ public class Ventana extends JFrame {
 
 			}
 		});
-
-		btnIniciarJuego.setBackground(Color.WHITE);
-		btnIniciarJuego.setForeground(Color.BLACK);
 		btnIniciarJuego.setFont(new Font("Verdana", Font.BOLD, 17));
 		btnIniciarJuego.setBounds(34, 63, 255, 35);
 		contentPane.add(btnIniciarJuego);
 
-		JButton btnResolver = new JButton("Resolver");
+		btnResolver = new JButton("Resolver");
+		btnResolver.setEnabled(false);
 		btnResolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				juego.resolver();
 			}
 		});
 		btnResolver.setFont(new Font("Verdana", Font.BOLD, 17));
@@ -181,12 +155,12 @@ public class Ventana extends JFrame {
 		lblTeclado.setBounds(24, 356, 89, 14);
 		contentPane.add(lblTeclado);
 
-		botones[0] = btnA = new JButton("A");
+		btnA = new JButton("A");
 		btnA.setEnabled(false);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'a';
-				comprobarLetra(btnA, letra);
+				juego.comprobarLetra(letra, btnA);
 			}
 		});
 		btnA.setBounds(24, 381, 50, 23);
@@ -197,7 +171,7 @@ public class Ventana extends JFrame {
 		btnB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'b';
-				comprobarLetra(btnB, letra);
+				juego.comprobarLetra(letra, btnB);
 			}
 		});
 		btnB.setBounds(73, 381, 50, 23);
@@ -208,7 +182,7 @@ public class Ventana extends JFrame {
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'c';
-				comprobarLetra(btnC, letra);
+				juego.comprobarLetra(letra, btnC);
 			}
 		});
 		btnC.setBounds(123, 381, 50, 23);
@@ -219,7 +193,7 @@ public class Ventana extends JFrame {
 		btnD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'd';
-				comprobarLetra(btnD, letra);
+				juego.comprobarLetra(letra, btnD);
 			}
 		});
 		btnD.setBounds(173, 381, 50, 23);
@@ -230,7 +204,7 @@ public class Ventana extends JFrame {
 		btnE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'e';
-				comprobarLetra(btnE, letra);
+				juego.comprobarLetra(letra, btnE);
 			}
 		});
 		btnE.setBounds(223, 381, 50, 23);
@@ -241,7 +215,7 @@ public class Ventana extends JFrame {
 		btnF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'f';
-				comprobarLetra(btnF, letra);
+				juego.comprobarLetra(letra, btnF);
 			}
 		});
 		btnF.setBounds(24, 415, 50, 23);
@@ -252,7 +226,7 @@ public class Ventana extends JFrame {
 		btnG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'g';
-				comprobarLetra(btnG, letra);
+				juego.comprobarLetra(letra, btnG);
 			}
 		});
 		btnG.setBounds(73, 415, 50, 23);
@@ -263,7 +237,7 @@ public class Ventana extends JFrame {
 		btnH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'h';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnH);
 			}
 		});
 		btnH.setBounds(123, 415, 50, 23);
@@ -274,7 +248,7 @@ public class Ventana extends JFrame {
 		btnI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'i';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnI);
 			}
 		});
 		btnI.setBounds(173, 415, 50, 23);
@@ -285,7 +259,7 @@ public class Ventana extends JFrame {
 		btnJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'j';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnJ);
 			}
 		});
 		btnJ.setBounds(223, 415, 50, 23);
@@ -296,7 +270,7 @@ public class Ventana extends JFrame {
 		btnK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'k';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnK);
 			}
 		});
 		btnK.setBounds(24, 449, 50, 23);
@@ -307,7 +281,7 @@ public class Ventana extends JFrame {
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'l';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnL);
 			}
 		});
 		btnL.setBounds(73, 449, 50, 23);
@@ -318,7 +292,7 @@ public class Ventana extends JFrame {
 		btnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'm';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnM);
 			}
 		});
 		btnM.setBounds(123, 449, 50, 23);
@@ -329,7 +303,7 @@ public class Ventana extends JFrame {
 		btnN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'n';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnN);
 			}
 		});
 		btnN.setBounds(173, 449, 50, 23);
@@ -340,7 +314,7 @@ public class Ventana extends JFrame {
 		btnO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'o';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnO);
 			}
 		});
 		btnO.setBounds(24, 483, 50, 23);
@@ -351,7 +325,7 @@ public class Ventana extends JFrame {
 		btnP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'p';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnP);
 			}
 		});
 		btnP.setBounds(74, 483, 50, 23);
@@ -362,7 +336,7 @@ public class Ventana extends JFrame {
 		btnQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'q';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnQ);
 			}
 		});
 		btnQ.setBounds(123, 483, 50, 23);
@@ -373,7 +347,7 @@ public class Ventana extends JFrame {
 		btnR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'r';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnR);
 			}
 		});
 		btnR.setBounds(173, 483, 50, 23);
@@ -384,7 +358,7 @@ public class Ventana extends JFrame {
 		btnS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 's';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnS);
 			}
 		});
 		btnS.setBounds(223, 483, 50, 23);
@@ -395,7 +369,7 @@ public class Ventana extends JFrame {
 		btnÑ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'ñ';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnÑ);
 			}
 		});
 		btnÑ.setBounds(223, 449, 50, 23);
@@ -406,7 +380,7 @@ public class Ventana extends JFrame {
 		btnT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 't';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnT);
 			}
 		});
 		btnT.setBounds(24, 517, 50, 23);
@@ -417,7 +391,7 @@ public class Ventana extends JFrame {
 		btnU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'u';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnU);
 			}
 		});
 		btnU.setBounds(74, 517, 50, 23);
@@ -428,7 +402,7 @@ public class Ventana extends JFrame {
 		btnW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'w';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnW);
 			}
 		});
 		btnW.setBounds(173, 517, 50, 23);
@@ -439,7 +413,7 @@ public class Ventana extends JFrame {
 		btnV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'v';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnV);
 			}
 		});
 		btnV.setBounds(123, 517, 50, 23);
@@ -450,7 +424,7 @@ public class Ventana extends JFrame {
 		btnZ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'z';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnZ);
 			}
 		});
 		btnZ.setBounds(74, 551, 50, 23);
@@ -461,7 +435,7 @@ public class Ventana extends JFrame {
 		btnY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				letra = 'y';
-				juego.comprobarLetra(letra);
+				juego.comprobarLetra(letra, btnY);
 			}
 		});
 		btnY.setBounds(24, 551, 50, 23);
@@ -471,10 +445,17 @@ public class Ventana extends JFrame {
 		btnX.setEnabled(false);
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				letra = 'x';
+				juego.comprobarLetra(letra, btnX);
 			}
 		});
 		btnX.setBounds(223, 517, 50, 23);
 		contentPane.add(btnX);
+		
+		vidas = new JLabel[] {lblVida1,lblVida2,lblVida3,lblVida4,lblVida5,lblVida6};
+		
+		botones = new JButton[] {btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN,
+                btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ};
 
 		lblAhorcado = new JLabel("");
 		lblAhorcado.setIcon(new ImageIcon(Ventana.class.getResource("/images/ahorcado1.png")));
@@ -482,17 +463,14 @@ public class Ventana extends JFrame {
 		lblAhorcado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAhorcado.setBounds(359, 11, 429, 563);
 		contentPane.add(lblAhorcado);
+		
+		lblPalabraResuelta = new JLabel("");
+		lblPalabraResuelta.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblPalabraResuelta.setBounds(136, 551, 140, 23);
+		contentPane.add(lblPalabraResuelta);
 
 		setResizable(false);
-
-		rellenarBotones();
-
 		
-	}
-
-	private void comprobarLetra(JButton button, char letra) {
-		juego.comprobarLetra(letra);
-		button.setEnabled(false);
 	}
 
 	// GETTERS Y SETTERS
@@ -567,4 +545,29 @@ public class Ventana extends JFrame {
 	public void setBotones(JButton[] botones) {
 		this.botones = botones;
 	}
+
+	public JLabel[] getVidas() {
+		return vidas;
+	}
+
+	public void setVidas(JLabel[] vidas) {
+		this.vidas = vidas;
+	}
+
+	public JLabel getLblPalabraResuelta() {
+		return lblPalabraResuelta;
+	}
+
+	public void setLblPalabraResuelta(JLabel lblPalabraResuelta) {
+		this.lblPalabraResuelta = lblPalabraResuelta;
+	}
+
+	public JButton getBtnResolver() {
+		return btnResolver;
+	}
+
+	public void setBtnResolver(JButton btnResolver) {
+		this.btnResolver = btnResolver;
+	}
+	
 }
