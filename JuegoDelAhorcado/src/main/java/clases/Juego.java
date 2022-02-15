@@ -12,7 +12,7 @@ public class Juego {
 	private int fallos = 1;
 	private int vidas = 6;
 
-	public void abrirJuego() {
+	public static void abrirJuego() {
 		Ventana.vista();
 
 	}
