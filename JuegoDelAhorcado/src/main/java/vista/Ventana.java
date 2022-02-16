@@ -28,27 +28,10 @@ public class Ventana extends JFrame {
 	private JButton[] botones;
 	private JLabel lblPalabraJugador, lblPalabraResuelta, lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6, lblAhorcado;
 
-
-
 	private JButton btnResolver, btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnÑ, btnO,
 			btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;
 
-	
-
-	
-	// {btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL,
-	// btnM, btnN,
-	// btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ
-	// };
-
 	private char letra = ' ';
-
-//	public void activarDesactivarBotones(boolean onOf) {
-//		for (int i = 0; i < botones.length; i++) {
-//			botones[i].setEnabled(onOf);
-//			System.out.println(botones[i].toString());
-//		}
-//	}
 
 	/**
 	 * Launch the application.

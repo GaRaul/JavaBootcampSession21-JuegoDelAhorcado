@@ -51,6 +51,7 @@ public class Palabra {
 		
 	}
 
+	// Metodo que coge una palabra del diccionario y la asigna al atributo palabra
 	public void generarPalabra() {
 
 		String palabra = "";
@@ -62,6 +63,7 @@ public class Palabra {
 		this.palabra = palabra;
 	}
 
+	// Metodo que devuelve guiones segun la longitud de la palabra
 	public String generarGuiones() {
 
 		String guiones = "";
@@ -76,6 +78,7 @@ public class Palabra {
 
 	}
 	
+	// GETTER
 	public String getPalabra() {
 		return palabra;
 	}
