@@ -4,17 +4,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import vista.Ventana;
+import vistas.Ventana;
+import vistas.VentanaAdicional;
 
 public class Juego {
 
 	// Atributos
-	Palabra palabra = new Palabra();
-	private int fallos = 1;
-	private int vidas = 6;
-	private boolean pistaDada = false;
+	static Palabra palabra = new Palabra();
+	private static int fallos;
+	private static int vidas = 6;
+	private static boolean pistaDada = false;
 	private boolean victoria = false;
-	private int fallosTotales = 0;
+	private static int fallosTotales = 0;
+	private static int fallosMaximos;
 
 	// Metodo que llama al metodo vista en la clase Ventana
 	public static void abrirJuego() {
@@ -23,7 +25,7 @@ public class Juego {
 	}
 
 	// Metodo que activa los botones del teclado
-	public void activarBotones() {
+	public static void activarBotones() {
 
 		Ventana.frame.getBotones();
 		for (int i = 0; i < Ventana.frame.getBotones().length; i++) {
@@ -41,18 +43,46 @@ public class Juego {
 	// Metodo que inicia el juego, genera una palabra nueva, genera los guiones,
 	// borra la ultima palabra resuelta, rellena las vidas del jugador y activa los
 	// botones para que pueda jugar
-	public void iniciarJuego() {
+	public static void iniciarJuego() {
 
-		fallosTotales = 0;
-		fallos = 1;
-		vidas = 6;
-		pistaDada = false;
+		switch (VentanaAdicional.getNivel()) {
+		case ("FACIL"):
+			fallosTotales = 0;
+			fallos = 1;
+			vidas = 6;
+			pistaDada = false;
 
-		palabra.generarPalabra();
-		Ventana.frame.getLblPalabraJugador().setText(palabra.generarGuiones());
-		Ventana.frame.getLblPalabraResuelta().setText("");
-		rellenarVidas();
-		activarBotones();
+			palabra.generarPalabra();
+			Ventana.frame.getLblPalabraJugador().setText(palabra.generarGuiones());
+			Ventana.frame.getLblPalabraResuelta().setText("");
+			rellenarVidas();
+			activarBotones();
+			break;
+		case ("INTERMEDIO"):
+			fallosTotales = 0;
+			fallos = 1;
+			vidas = 6;
+			pistaDada = false;
+
+			palabra.generarPalabra();
+			Ventana.frame.getLblPalabraJugador().setText(palabra.generarGuiones());
+			Ventana.frame.getLblPalabraResuelta().setText("");
+			rellenarVidas();
+			activarBotones();
+			break;
+		case ("DIFICIL"):
+			fallosTotales = 0;
+			fallos = 1;
+			vidas = 6;
+			pistaDada = false;
+
+			palabra.generarPalabra();
+			Ventana.frame.getLblPalabraJugador().setText(palabra.generarGuiones());
+			Ventana.frame.getLblPalabraResuelta().setText("");
+			rellenarVidas();
+			activarBotones();
+			break;
+		}
 
 	}
 
@@ -79,9 +109,9 @@ public class Juego {
 			letras[i] = palabra.charAt(i);
 		}
 
-		for (int i = 0; i < this.palabra.getPalabra().length(); i++) {
+		for (int i = 0; i < Juego.palabra.getPalabra().length(); i++) {
 
-			if (this.palabra.getPalabra().charAt(i) == letra) {
+			if (Juego.palabra.getPalabra().charAt(i) == letra) {
 				letras[i] = letra;
 				acierto = true;
 			}
@@ -104,12 +134,12 @@ public class Juego {
 		}
 
 	}
-	
+
 	private boolean comprobarVictoria(String palabraJugador) {
-		if (palabraJugador.equalsIgnoreCase(this.palabra.getPalabra())) {
+		if (palabraJugador.equalsIgnoreCase(Juego.palabra.getPalabra())) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -118,15 +148,14 @@ public class Juego {
 	private void finPartida() {
 
 		String msg;
-		
+
 		if (victoria) {
 			msg = "Felicidades has ganado!!! Quieres volver a jugar?";
 		} else {
 			msg = "Has perdido :(, quieres volver a jugar?";
 		}
-		
-		int opcion = JOptionPane.showConfirmDialog(null, msg,
-				"Selecciona una opcion", JOptionPane.YES_NO_OPTION);
+
+		int opcion = JOptionPane.showConfirmDialog(null, msg, "Selecciona una opcion", JOptionPane.YES_NO_OPTION);
 
 		switch (opcion) {
 		case 0:
@@ -143,7 +172,7 @@ public class Juego {
 	}
 
 	// Metodo para rellenar las vidas del jugador
-	public void rellenarVidas() {
+	public static void rellenarVidas() {
 		for (int i = 0; i < vidas; i++) {
 			Ventana.frame.getVidas()[i].setEnabled(true);
 
@@ -155,16 +184,24 @@ public class Juego {
 		fallosTotales++;
 
 		Ventana.frame.getFallosTotales().setText("Fallos totales: " + fallosTotales);
-		
+
 		// Si ha gastado todos los intentos le quita una vida
-		if (fallos == 7) {
+		if (fallosMaximos < fallos) {
 			Ventana.frame.getLblAhorcado().setIcon(new ImageIcon(Ventana.class.getResource("/images/ahorcado7.png")));
 			quitarVida();
-			
+
 			// Si aun le quedan intentos carga la siguiente imagen del ahorcado
-		} else {
-			Ventana.frame.getLblAhorcado()
-					.setIcon(new ImageIcon(Ventana.class.getResource("/images/ahorcado" + fallos + ".png")));
+		} else if (fallosMaximos == 7) {
+			Ventana.frame.getLblAhorcado().setIcon(
+					new ImageIcon(Ventana.class.getResource("/images/imagesFacil/ahorcado" + fallos + ".png")));
+
+		} else if (fallosMaximos == 5) {
+			Ventana.frame.getLblAhorcado().setIcon(
+					new ImageIcon(Ventana.class.getResource("/images/imagesIntermedio/ahorcado" + fallos + ".png")));
+
+		} else if (fallosMaximos == 3) {
+			Ventana.frame.getLblAhorcado().setIcon(
+					new ImageIcon(Ventana.class.getResource("/images/imagesDificil/ahorcado" + fallos + ".png")));
 
 		}
 	}
@@ -174,7 +211,7 @@ public class Juego {
 	// vidas llama al metodo perder
 	public void quitarVida() {
 		vidas--;
-		fallos = 0;
+		fallos = 1;
 		Ventana.frame.getVidas()[vidas].setEnabled(false);
 
 		if (vidas > 0 && !pistaDada) {
@@ -184,7 +221,7 @@ public class Juego {
 			Ventana.frame.getLblPalabraJugador().setText(palabra.generarGuiones());
 			activarBotones();
 
-		} else if (pistaDada){
+		} else if (pistaDada) {
 			pistaDada = false;
 		} else {
 			victoria = false;
@@ -193,15 +230,15 @@ public class Juego {
 
 	}
 
-	
-	// Metodo que pone la primera letra oculta en la palabra y quita una vida al jugador
+	// Metodo que pone la primera letra oculta en la palabra y quita una vida al
+	// jugador
 	public void darPista() {
 
 		if (vidas == 1) {
 			JOptionPane.showMessageDialog(null, "No puedes pedir una pista teniendo solo 1 vida");
 			pistaDada = true;
 		}
-		
+
 		String palabra = Ventana.frame.getLblPalabraJugador().getText();
 
 		char[] letras = new char[palabra.length()];
@@ -209,17 +246,17 @@ public class Juego {
 
 		for (int i = 0; i < letras.length; i++) {
 			letras[i] = palabra.charAt(i);
-			letrasReveladas[i] = this.palabra.getPalabra().charAt(i);
+			letrasReveladas[i] = Juego.palabra.getPalabra().charAt(i);
 		}
 
-		for (int i = 0; i < this.palabra.getPalabra().length(); i++) {
+		for (int i = 0; i < Juego.palabra.getPalabra().length(); i++) {
 
 			if (palabra.charAt(i) == '-' && !pistaDada) {
 				letras[i] = letrasReveladas[i];
 				pistaDada = true;
 			}
 		}
-		
+
 		quitarVida();
 
 		palabra = "";
@@ -230,16 +267,16 @@ public class Juego {
 
 		Ventana.frame.getLblPalabraJugador().setText(palabra);
 		Ventana.frame.getBtnPista().setEnabled(false);
-		
+
 		if (comprobarVictoria(palabra)) {
 			victoria = true;
 			finPartida();
 		}
 
 	}
-	
+
 	public void nuevaPalabra(String palabra) {
-		this.palabra.nuevaPalabra(palabra);
+		Juego.palabra.nuevaPalabra(palabra);
 	}
 
 	public int getFallosTotales() {
@@ -247,7 +284,22 @@ public class Juego {
 	}
 
 	public void setFallosTotales(int fallosTotales) {
-		this.fallosTotales = fallosTotales;
+		Juego.fallosTotales = fallosTotales;
 	}
 
+	public static int getFallos() {
+		return fallos;
+	}
+
+	public static void setFallos(int fallos) {
+		Juego.fallos = fallos;
+	}
+
+	public static int getFallosMaximos() {
+		return fallosMaximos;
+	}
+
+	public static void setFallosMaximos(int fallosMaximos) {
+		Juego.fallosMaximos = fallosMaximos;
+	}
 }

@@ -1,4 +1,4 @@
-package vista;
+package vistas;
 
 import java.awt.EventQueue;
 
@@ -86,7 +86,7 @@ public class Ventana extends JFrame {
 		JMenuItem nuevoJuego = new JMenuItem("Nuevo juego");
 		nuevoJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				juego.iniciarJuego();
+				Juego.iniciarJuego();
 			}
 		});
 		JMenuItem palabraNueva = new JMenuItem("Añadir palabra");
@@ -133,8 +133,8 @@ public class Ventana extends JFrame {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				juego.iniciarJuego();
-
+				Juego.iniciarJuego();
+				VentanaAdicional.vista();
 			}
 		});
 		btnIniciarJuego.setFont(new Font("Verdana", Font.BOLD, 17));
