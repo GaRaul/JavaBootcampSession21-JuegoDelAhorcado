@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import clases.*;
 
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -16,6 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class Ventana extends JFrame {
 
@@ -23,13 +27,16 @@ public class Ventana extends JFrame {
 
 	static Juego juego = new Juego();
 	public static Ventana frame;
-	
+
 	private JLabel[] vidas;
 	private JButton[] botones;
-	private JLabel lblPalabraJugador, lblPalabraResuelta, lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6, lblAhorcado;
+	private JLabel lblPalabraJugador, lblPalabraResuelta, lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6,
+			lblAhorcado;
 
-	private JButton btnResolver, btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnÑ, btnO,
-			btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;
+	private JButton btnResolver, btnPista, btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM,
+			btnN, btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;
+
+	private JMenuItem fallosTotales;
 
 	private char letra = ' ';
 
@@ -56,12 +63,57 @@ public class Ventana extends JFrame {
 	public Ventana() {
 		setTitle("Juego del ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 773, 624);
+		setBounds(100, 100, 773, 649);
+
+		JMenuBar barraMenu = new JMenuBar();
+		setJMenuBar(barraMenu);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		JMenu archivo = new JMenu("Archivo");
+		JMenu info = new JMenu("Información");
+
+		JMenuItem salir = new JMenuItem("Salir");
+		salir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		JMenuItem nuevoJuego = new JMenuItem("Nuevo juego");
+		nuevoJuego.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				juego.iniciarJuego();
+			}
+		});
+		JMenuItem comoJugar = new JMenuItem("Como jugar");
+		comoJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,
+						"Descripción general. Usando una fila de guiones, se representa la palabra a adivinar,\n"
+						+ " dando el número de letras, números y categoría. Si el jugador adivinador sugiere una letra o \n"
+						+ "número que aparece en la palabra, el otro jugador la escribe en todas sus posiciones correctas.");
+			}
+		});
+		JMenuItem acercaDe = new JMenuItem("Acerca de");
+		acercaDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "AUTORES\nAbel, Edgar y Raúl");
+			}
+		});
+
+		fallosTotales = new JMenuItem("Fallos totales: ");
+
+		barraMenu.add(archivo);
+		barraMenu.add(info);
+		barraMenu.add(fallosTotales);
+
+		archivo.add(nuevoJuego);
+		archivo.add(salir);
+		info.add(comoJugar);
+		info.add(acercaDe);
 
 		JLabel lblMenu = new JLabel("Menu");
 		lblMenu.setFont(new Font("Times New Roman", Font.BOLD, 18));
@@ -434,26 +486,39 @@ public class Ventana extends JFrame {
 		});
 		btnX.setBounds(223, 517, 50, 23);
 		contentPane.add(btnX);
-		
-		vidas = new JLabel[] {lblVida1,lblVida2,lblVida3,lblVida4,lblVida5,lblVida6};
-		
-		botones = new JButton[] {btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN,
-                btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ};
+
+		vidas = new JLabel[] { lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6 };
+
+		botones = new JButton[] { btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN,
+				btnÑ, btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ };
 
 		lblAhorcado = new JLabel("");
 		lblAhorcado.setIcon(new ImageIcon(Ventana.class.getResource("/images/ahorcado1.png")));
 		lblAhorcado.setBackground(new Color(204, 204, 255));
 		lblAhorcado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAhorcado.setBounds(359, 11, 429, 563);
+		lblAhorcado.setBounds(345, 38, 446, 469);
 		contentPane.add(lblAhorcado);
-		
+
 		lblPalabraResuelta = new JLabel("");
 		lblPalabraResuelta.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblPalabraResuelta.setBounds(136, 551, 140, 23);
 		contentPane.add(lblPalabraResuelta);
 
+		btnPista = new JButton("PISTA");
+		btnPista.setEnabled(false);
+		btnPista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				juego.darPista();
+			}
+		});
+		btnPista.setBackground(Color.YELLOW);
+		btnPista.setForeground(Color.RED);
+		btnPista.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
+		btnPista.setBounds(345, 517, 106, 57);
+		contentPane.add(btnPista);
+
 		setResizable(false);
-		
+
 	}
 
 	// GETTERS Y SETTERS
@@ -552,5 +617,20 @@ public class Ventana extends JFrame {
 	public void setBtnResolver(JButton btnResolver) {
 		this.btnResolver = btnResolver;
 	}
-	
+
+	public JButton getBtnPista() {
+		return btnPista;
+	}
+
+	public void setBtnPista(JButton btnPista) {
+		this.btnPista = btnPista;
+	}
+
+	public JMenuItem getFallosTotales() {
+		return fallosTotales;
+	}
+
+	public void setFallosTotales(JMenuItem fallosTotales) {
+		this.fallosTotales = fallosTotales;
+	}
 }
