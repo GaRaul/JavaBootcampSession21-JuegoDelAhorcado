@@ -3,8 +3,9 @@ package com.juegodelahorcado.JuegoDelAhorcado;
 import clases.Juego;
 
 /**
- * Hello world!
+ * autores: Abel, Edgar, Raúl
  *
+ * fecha modificacion: 16/02/2022
  */
 public class App 
 {

@@ -21,6 +21,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+@SuppressWarnings("serial")
 public class Ventana extends JFrame {
 
 	private JPanel contentPane;
@@ -88,6 +89,14 @@ public class Ventana extends JFrame {
 				juego.iniciarJuego();
 			}
 		});
+		JMenuItem palabraNueva = new JMenuItem("Añadir palabra");
+		palabraNueva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String palabraNueva = JOptionPane.showInputDialog("Introduce la palabra que quieres añadir al diccionario de palabras");
+				juego.nuevaPalabra(palabraNueva);
+				
+			}
+		});
 		JMenuItem comoJugar = new JMenuItem("Como jugar");
 		comoJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,6 +121,7 @@ public class Ventana extends JFrame {
 
 		archivo.add(nuevoJuego);
 		archivo.add(salir);
+		archivo.add(palabraNueva);
 		info.add(comoJugar);
 		info.add(acercaDe);
 
@@ -194,7 +204,7 @@ public class Ventana extends JFrame {
 		btnA.setEnabled(false);
 		btnA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'a';
+				letra = 'A';
 				juego.comprobarLetra(letra, btnA);
 			}
 		});
@@ -205,7 +215,7 @@ public class Ventana extends JFrame {
 		btnB.setEnabled(false);
 		btnB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'b';
+				letra = 'B';
 				juego.comprobarLetra(letra, btnB);
 			}
 		});
@@ -216,7 +226,7 @@ public class Ventana extends JFrame {
 		btnC.setEnabled(false);
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'c';
+				letra = 'C';
 				juego.comprobarLetra(letra, btnC);
 			}
 		});
@@ -227,7 +237,7 @@ public class Ventana extends JFrame {
 		btnD.setEnabled(false);
 		btnD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'd';
+				letra = 'D';
 				juego.comprobarLetra(letra, btnD);
 			}
 		});
@@ -238,7 +248,7 @@ public class Ventana extends JFrame {
 		btnE.setEnabled(false);
 		btnE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'e';
+				letra = 'E';
 				juego.comprobarLetra(letra, btnE);
 			}
 		});
@@ -249,7 +259,7 @@ public class Ventana extends JFrame {
 		btnF.setEnabled(false);
 		btnF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'f';
+				letra = 'F';
 				juego.comprobarLetra(letra, btnF);
 			}
 		});
@@ -260,7 +270,7 @@ public class Ventana extends JFrame {
 		btnG.setEnabled(false);
 		btnG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'g';
+				letra = 'G';
 				juego.comprobarLetra(letra, btnG);
 			}
 		});
@@ -271,7 +281,7 @@ public class Ventana extends JFrame {
 		btnH.setEnabled(false);
 		btnH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'h';
+				letra = 'H';
 				juego.comprobarLetra(letra, btnH);
 			}
 		});
@@ -282,7 +292,7 @@ public class Ventana extends JFrame {
 		btnI.setEnabled(false);
 		btnI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'i';
+				letra = 'I';
 				juego.comprobarLetra(letra, btnI);
 			}
 		});
@@ -293,7 +303,7 @@ public class Ventana extends JFrame {
 		btnJ.setEnabled(false);
 		btnJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'j';
+				letra = 'J';
 				juego.comprobarLetra(letra, btnJ);
 			}
 		});
@@ -304,7 +314,7 @@ public class Ventana extends JFrame {
 		btnK.setEnabled(false);
 		btnK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'k';
+				letra = 'K';
 				juego.comprobarLetra(letra, btnK);
 			}
 		});
@@ -315,7 +325,7 @@ public class Ventana extends JFrame {
 		btnL.setEnabled(false);
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'l';
+				letra = 'L';
 				juego.comprobarLetra(letra, btnL);
 			}
 		});
@@ -326,7 +336,7 @@ public class Ventana extends JFrame {
 		btnM.setEnabled(false);
 		btnM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'm';
+				letra = 'M';
 				juego.comprobarLetra(letra, btnM);
 			}
 		});
@@ -337,7 +347,7 @@ public class Ventana extends JFrame {
 		btnN.setEnabled(false);
 		btnN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'n';
+				letra = 'N';
 				juego.comprobarLetra(letra, btnN);
 			}
 		});
@@ -348,7 +358,7 @@ public class Ventana extends JFrame {
 		btnO.setEnabled(false);
 		btnO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'o';
+				letra = 'O';
 				juego.comprobarLetra(letra, btnO);
 			}
 		});
@@ -359,7 +369,7 @@ public class Ventana extends JFrame {
 		btnP.setEnabled(false);
 		btnP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'p';
+				letra = 'P';
 				juego.comprobarLetra(letra, btnP);
 			}
 		});
@@ -370,7 +380,7 @@ public class Ventana extends JFrame {
 		btnQ.setEnabled(false);
 		btnQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'q';
+				letra = 'Q';
 				juego.comprobarLetra(letra, btnQ);
 			}
 		});
@@ -381,7 +391,7 @@ public class Ventana extends JFrame {
 		btnR.setEnabled(false);
 		btnR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'r';
+				letra = 'R';
 				juego.comprobarLetra(letra, btnR);
 			}
 		});
@@ -392,7 +402,7 @@ public class Ventana extends JFrame {
 		btnS.setEnabled(false);
 		btnS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 's';
+				letra = 'S';
 				juego.comprobarLetra(letra, btnS);
 			}
 		});
@@ -403,7 +413,7 @@ public class Ventana extends JFrame {
 		btnÑ.setEnabled(false);
 		btnÑ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'ñ';
+				letra = 'Ñ';
 				juego.comprobarLetra(letra, btnÑ);
 			}
 		});
@@ -414,7 +424,7 @@ public class Ventana extends JFrame {
 		btnT.setEnabled(false);
 		btnT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 't';
+				letra = 'T';
 				juego.comprobarLetra(letra, btnT);
 			}
 		});
@@ -425,7 +435,7 @@ public class Ventana extends JFrame {
 		btnU.setEnabled(false);
 		btnU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'u';
+				letra = 'U';
 				juego.comprobarLetra(letra, btnU);
 			}
 		});
@@ -436,7 +446,7 @@ public class Ventana extends JFrame {
 		btnW.setEnabled(false);
 		btnW.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'w';
+				letra = 'W';
 				juego.comprobarLetra(letra, btnW);
 			}
 		});
@@ -447,7 +457,7 @@ public class Ventana extends JFrame {
 		btnV.setEnabled(false);
 		btnV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'v';
+				letra = 'V';
 				juego.comprobarLetra(letra, btnV);
 			}
 		});
@@ -458,7 +468,7 @@ public class Ventana extends JFrame {
 		btnZ.setEnabled(false);
 		btnZ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'z';
+				letra = 'Z';
 				juego.comprobarLetra(letra, btnZ);
 			}
 		});
@@ -469,7 +479,7 @@ public class Ventana extends JFrame {
 		btnY.setEnabled(false);
 		btnY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'y';
+				letra = 'Y';
 				juego.comprobarLetra(letra, btnY);
 			}
 		});
@@ -480,7 +490,7 @@ public class Ventana extends JFrame {
 		btnX.setEnabled(false);
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				letra = 'x';
+				letra = 'X';
 				juego.comprobarLetra(letra, btnX);
 			}
 		});

@@ -25,12 +25,6 @@ public class Juego {
 	// Metodo que activa los botones del teclado
 	public void activarBotones() {
 
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-
 		Ventana.frame.getBotones();
 		for (int i = 0; i < Ventana.frame.getBotones().length; i++) {
 			Ventana.frame.getBotones()[i].setEnabled(true);
@@ -242,6 +236,10 @@ public class Juego {
 			finPartida();
 		}
 
+	}
+	
+	public void nuevaPalabra(String palabra) {
+		this.palabra.nuevaPalabra(palabra);
 	}
 
 	public int getFallosTotales() {

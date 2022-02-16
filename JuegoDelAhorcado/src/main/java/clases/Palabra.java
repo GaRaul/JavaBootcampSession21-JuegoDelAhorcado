@@ -6,49 +6,21 @@ public class Palabra {
 
 	private String palabra = "";
 
-
 	private ArrayList<String> palabras = new ArrayList<String>();
 
 	public Palabra() {
-		
-		palabras.add("perro");
-		palabras.add("puerta");
-		palabras.add("gato");
-		palabras.add("vaso");
-		palabras.add("raton");
-		palabras.add("esdrujula");
-		palabras.add("ordenador");
-		palabras.add("pastilla");
-		palabras.add("monitor");
-		palabras.add("servilleta");
-		palabras.add("avion");
-		palabras.add("mesa");
-		palabras.add("camion");
-		palabras.add("bebida");
-		palabras.add("montaña");
-		palabras.add("antena");
-		palabras.add("paradoja");
-		palabras.add("moroso");
-		palabras.add("dinero");
-		palabras.add("billete");
-		palabras.add("alcohol");
-		palabras.add("adiccion");
-		palabras.add("boligrafo");
-		palabras.add("libreta");
-		palabras.add("aprobar");
-		palabras.add("explorador");
-		palabras.add("conductor");
-		palabras.add("cazador");
-		palabras.add("biblioteca");
-		palabras.add("programa");
-		palabras.add("ahorcado");
-		palabras.add("juego");
-		palabras.add("silla");
-		palabras.add("covid");
-		palabras.add("vitamina");
-		palabras.add("independentismo");
-		palabras.add("escribir");
-		
+
+		palabras.add("VASO");
+		palabras.add("RATON");
+		palabras.add("ESDRUJULA");
+		palabras.add("ORDENADOR");
+		palabras.add("PASTILLA");
+		palabras.add("MONITOR");
+		palabras.add("SERVILLETA");
+		palabras.add("AVION");
+		palabras.add("ESPAÑA");
+		palabras.add("CAMION");
+
 	}
 
 	// Metodo que coge una palabra del diccionario y la asigna al atributo palabra
@@ -73,15 +45,42 @@ public class Palabra {
 		}
 
 		System.out.println(this.palabra);
-		
+
 		return guiones;
 
 	}
-	
+
+	public void nuevaPalabra(String palabra) {
+		if (comprobarFormatoPalabra(palabra)) {
+			palabras.add(palabra);
+			mostrarDiccionario();
+		}
+
+	}
+
+	private boolean comprobarFormatoPalabra(String palabra) {
+
+		palabra.toUpperCase();
+		
+		for (int i = 0; i < palabra.length(); i++) {
+			if (!((palabra.charAt(i) >= 65 && palabra.charAt(i) <= 90) || (palabra.charAt(i) == 'Ñ'))) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	public void mostrarDiccionario() {
+		for (int i = 0; i < palabras.size(); i++) {
+			System.out.println(palabras.get(i));
+		}
+	}
+
 	// GETTER
 	public String getPalabra() {
 		return palabra;
 	}
-
 
 }
