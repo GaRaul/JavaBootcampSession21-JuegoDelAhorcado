@@ -51,6 +51,7 @@ public class Palabra {
 	}
 
 	public void nuevaPalabra(String palabra) {
+		palabra = palabra.toUpperCase();
 		if (comprobarFormatoPalabra(palabra)) {
 			palabras.add(palabra);
 			mostrarDiccionario();
@@ -59,9 +60,6 @@ public class Palabra {
 	}
 
 	private boolean comprobarFormatoPalabra(String palabra) {
-
-		palabra.toUpperCase();
-		
 		for (int i = 0; i < palabra.length(); i++) {
 			if (!((palabra.charAt(i) >= 65 && palabra.charAt(i) <= 90) || (palabra.charAt(i) == 'Ñ'))) {
 				return false;
