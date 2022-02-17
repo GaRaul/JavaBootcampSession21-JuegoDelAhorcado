@@ -191,7 +191,7 @@ public class Juego {
 			quitarVida();
 
 			// Si aun le quedan intentos carga la siguiente imagen del ahorcado
-		} else if (fallosMaximos == 7) {
+		} else if (fallosMaximos == 6) {
 			Ventana.frame.getLblAhorcado().setIcon(
 					new ImageIcon(Ventana.class.getResource("/images/imagesFacil/ahorcado" + fallos + ".png")));
 

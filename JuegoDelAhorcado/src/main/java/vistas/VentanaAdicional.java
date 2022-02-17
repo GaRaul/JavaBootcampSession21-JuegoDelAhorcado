@@ -54,7 +54,7 @@ public class VentanaAdicional extends JFrame {
 		btnFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nivel = "FACIL";
-				Juego.setFallosMaximos(7);
+				Juego.setFallosMaximos(6);
 				Juego.iniciarJuego();
 			}
 		});
