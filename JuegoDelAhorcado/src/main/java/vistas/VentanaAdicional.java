@@ -22,11 +22,13 @@ public class VentanaAdicional extends JFrame {
 	private JButton btnIntermedio;
 	private JButton btnDificil;
 	private static String nivel = "";
+	static Juego juego;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void vista() {
+	public static void vista(Juego j) {
+		juego = j;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,9 +55,8 @@ public class VentanaAdicional extends JFrame {
 		btnFacil = new JButton("FACIL");
 		btnFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nivel = "FACIL";
-				Juego.setFallosMaximos(6);
-				Juego.iniciarJuego();
+				juego.ponerDificultad(1);
+				juego.iniciarJuego();
 			}
 		});
 
@@ -66,9 +67,8 @@ public class VentanaAdicional extends JFrame {
 		btnIntermedio.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				nivel = "INTERMEDIO";
-				Juego.setFallosMaximos(5);
-				Juego.iniciarJuego();
+				juego.ponerDificultad(2);
+				juego.iniciarJuego();
 			}
 		});
 		btnIntermedio.setBounds(149, 72, 100, 23);
@@ -77,9 +77,8 @@ public class VentanaAdicional extends JFrame {
 		btnDificil = new JButton("DIFICIL");
 		btnDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nivel = "DIFICIL";
-				Juego.setFallosMaximos(3);
-				Juego.iniciarJuego();
+				juego.ponerDificultad(3);
+				juego.iniciarJuego();
 			}
 		});
 		btnDificil.setBounds(270, 72, 89, 23);

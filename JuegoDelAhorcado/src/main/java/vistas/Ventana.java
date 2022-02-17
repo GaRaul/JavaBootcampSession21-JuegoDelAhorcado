@@ -26,7 +26,8 @@ public class Ventana extends JFrame {
 
 	private JPanel contentPane;
 
-	static Juego juego = new Juego();
+	Juego juego = new Juego();
+
 	public static Ventana frame;
 
 	private JLabel[] vidas;
@@ -86,7 +87,7 @@ public class Ventana extends JFrame {
 		JMenuItem nuevoJuego = new JMenuItem("Nuevo juego");
 		nuevoJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Juego.iniciarJuego();
+				juego.iniciarJuego();
 			}
 		});
 		JMenuItem palabraNueva = new JMenuItem("Añadir palabra");
@@ -133,8 +134,7 @@ public class Ventana extends JFrame {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Juego.iniciarJuego();
-				VentanaAdicional.vista();
+				VentanaAdicional.vista(juego);
 			}
 		});
 		btnIniciarJuego.setFont(new Font("Verdana", Font.BOLD, 17));
@@ -642,5 +642,13 @@ public class Ventana extends JFrame {
 
 	public void setFallosTotales(JMenuItem fallosTotales) {
 		this.fallosTotales = fallosTotales;
+	}
+	
+	public Juego getJuego() {
+		return juego;
+	}
+
+	public void setJuego(Juego juego) {
+		this.juego = juego;
 	}
 }

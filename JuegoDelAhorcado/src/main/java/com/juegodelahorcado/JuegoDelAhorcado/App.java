@@ -7,12 +7,10 @@ import clases.Juego;
  *
  * fecha modificacion: 16/02/2022
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-    	
-    	Juego.abrirJuego();
-    	
-    }
+public class App {
+	public static void main(String[] args) {
+
+		Juego.abrirJuego();
+
+	}
 }
